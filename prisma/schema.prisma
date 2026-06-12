@@ -1,0 +1,390 @@
+// Hotel Alkabir - Prisma Schema
+// Database: PostgreSQL (Supabase)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CHECKED_IN
+  CHECKED_OUT
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+  FAILED
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  CASH
+  ONLINE
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+enum RoomType {
+  STANDARD
+  DELUXE
+  SUITE
+  PRESIDENTIAL
+  FAMILY
+  HONEYMOON
+}
+
+// ─── NextAuth Models ─────────────────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ─── User ────────────────────────────────────────────────────────────────────
+
+model User {
+  id             String    @id @default(cuid())
+  name           String?
+  email          String    @unique
+  emailVerified  DateTime?
+  image          String?
+  password       String?
+  role           UserRole  @default(USER)
+  phone          String?
+  nationality    String?
+  dateOfBirth    DateTime?
+  address        String?
+  city           String?
+  country        String?
+  postalCode     String?
+  loyaltyPoints  Int       @default(0)
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  accounts  Account[]
+  sessions  Session[]
+  bookings  Booking[]
+  reviews   Review[]
+  blogPosts BlogPost[]
+
+  @@map("users")
+}
+
+// ─── Room ────────────────────────────────────────────────────────────────────
+
+model Room {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String     @db.Text
+  shortDesc   String?
+  type        RoomType   @default(STANDARD)
+  status      RoomStatus @default(AVAILABLE)
+  price       Float
+  weekendPrice Float?
+  floor       Int        @default(1)
+  roomNumber  String?    @unique
+  capacity    Int        @default(2)
+  adults      Int        @default(2)
+  children    Int        @default(0)
+  size        Float?
+  bedType     String?
+  view        String?
+  featured    Boolean    @default(false)
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  images    RoomImage[]
+  amenities RoomAmenity[]
+  bookings  Booking[]
+  reviews   Review[]
+
+  @@map("rooms")
+}
+
+model RoomImage {
+  id        String   @id @default(cuid())
+  roomId    String
+  url       String
+  alt       String?
+  isPrimary Boolean  @default(false)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@map("room_images")
+}
+
+model Amenity {
+  id        String        @id @default(cuid())
+  name      String        @unique
+  icon      String?
+  category  String?
+  createdAt DateTime      @default(now())
+
+  rooms RoomAmenity[]
+
+  @@map("amenities")
+}
+
+model RoomAmenity {
+  roomId    String
+  amenityId String
+
+  room    Room    @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  amenity Amenity @relation(fields: [amenityId], references: [id], onDelete: Cascade)
+
+  @@id([roomId, amenityId])
+  @@map("room_amenities")
+}
+
+// ─── Booking ─────────────────────────────────────────────────────────────────
+
+model Booking {
+  id              String        @id @default(cuid())
+  bookingRef      String        @unique @default(cuid())
+  userId          String?
+  roomId          String
+  checkIn         DateTime
+  checkOut        DateTime
+  adults          Int           @default(1)
+  children        Int           @default(0)
+  nights          Int
+  pricePerNight   Float
+  subtotal        Float
+  taxes           Float         @default(0)
+  discount        Float         @default(0)
+  totalPrice      Float
+  status          BookingStatus @default(PENDING)
+  specialRequests String?       @db.Text
+  guestName       String
+  guestEmail      String
+  guestPhone      String?
+  guestCountry    String?
+  checkedInAt     DateTime?
+  checkedOutAt    DateTime?
+  cancelledAt     DateTime?
+  cancelReason    String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user    User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  room    Room    @relation(fields: [roomId], references: [id])
+  payment Payment?
+  guests  BookingGuest[]
+
+  @@map("bookings")
+}
+
+model BookingGuest {
+  id         String  @id @default(cuid())
+  bookingId  String
+  firstName  String
+  lastName   String
+  email      String?
+  phone      String?
+  isMain     Boolean @default(false)
+  idType     String?
+  idNumber   String?
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@map("booking_guests")
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  bookingId     String        @unique
+  amount        Float
+  currency      String        @default("MAD")
+  method        PaymentMethod @default(CASH)
+  status        PaymentStatus @default(PENDING)
+  transactionId String?
+  paidAt        DateTime?
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+// ─── Review ──────────────────────────────────────────────────────────────────
+
+model Review {
+  id         String   @id @default(cuid())
+  userId     String?
+  roomId     String?
+  rating     Int
+  title      String?
+  body       String   @db.Text
+  approved   Boolean  @default(false)
+  featured   Boolean  @default(false)
+  guestName  String?
+  guestImage String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  room Room? @relation(fields: [roomId], references: [id], onDelete: SetNull)
+
+  @@map("reviews")
+}
+
+// ─── Gallery ─────────────────────────────────────────────────────────────────
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  url         String
+  alt         String?
+  title       String?
+  category    String   @default("general")
+  description String?
+  sortOrder   Int      @default(0)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@map("gallery_images")
+}
+
+// ─── Blog ────────────────────────────────────────────────────────────────────
+
+model BlogCategory {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  slug        String     @unique
+  description String?
+  color       String?
+  createdAt   DateTime   @default(now())
+
+  posts BlogPost[]
+
+  @@map("blog_categories")
+}
+
+model BlogPost {
+  id          String       @id @default(cuid())
+  title       String
+  slug        String       @unique
+  excerpt     String?
+  body        String       @db.Text
+  coverImage  String?
+  authorId    String?
+  categoryId  String?
+  published   Boolean      @default(false)
+  featured    Boolean      @default(false)
+  views       Int          @default(0)
+  readTime    Int          @default(5)
+  tags        String[]     @default([])
+  publishedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  author   User?         @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  category BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@map("blog_posts")
+}
+
+// ─── Contact ─────────────────────────────────────────────────────────────────
+
+model Contact {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String        @db.Text
+  status    ContactStatus @default(NEW)
+  ipAddress String?
+  reply     String?       @db.Text
+  repliedAt DateTime?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("contacts")
+}
+
+// ─── Settings ────────────────────────────────────────────────────────────────
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  group     String   @default("general")
+  label     String?
+  type      String   @default("text")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
