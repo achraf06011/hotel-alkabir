@@ -15,11 +15,19 @@ const subjects = [
   'Spa & Bien-être', 'Restaurant', 'Réclamation', 'Autre',
 ]
 
+type ContactFormData = {
+  name: string
+  email: string
+  phone: string
+  subject: string
+  message: string
+}
+
 export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false)
-  const form = useForm({ defaultValues: { name: '', email: '', phone: '', subject: '', message: '' } })
+  const form = useForm<ContactFormData>({ defaultValues: { name: '', email: '', phone: '', subject: '', message: '' } })
 
-  const handleSubmit = async (data: typeof form._defaultValues) => {
+  const handleSubmit = async (data: ContactFormData) => {
     setIsLoading(true)
     try {
       const res = await fetch('/api/contact', {
