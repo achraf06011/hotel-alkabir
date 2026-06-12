@@ -55,7 +55,15 @@ export function BookingForm({ rooms, initialParams }: BookingFormProps) {
     ? calculateBookingTotal(selectedRoom.price, nights)
     : null
 
-  const form = useForm({
+  type GuestFormData = {
+    guestName: string
+    guestEmail: string
+    guestPhone: string
+    guestCountry: string
+    specialRequests: string
+  }
+
+  const form = useForm<GuestFormData>({
     defaultValues: {
       guestName: '',
       guestEmail: '',
@@ -65,7 +73,7 @@ export function BookingForm({ rooms, initialParams }: BookingFormProps) {
     },
   })
 
-  const handleSubmit = async (formData: typeof form._defaultValues) => {
+  const handleSubmit = async (formData: GuestFormData) => {
     if (!selectedRoomId || nights <= 0) {
       toast.error('Veuillez sélectionner une chambre et des dates valides')
       return
