@@ -2,12 +2,11 @@
 import { formatPrice, formatDate, getBookingStatusLabel } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import {
-
-export const dynamic = 'force-dynamic'
-
   TrendingUp, TrendingDown, Users, Calendar, BedDouble,
   DollarSign, MessageSquare, Star, CheckCircle, Clock
 } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
 
 async function getStats() {
   const now = new Date()
