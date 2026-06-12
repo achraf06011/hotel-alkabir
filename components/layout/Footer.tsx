@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { Crown, MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
+import Image from 'next/image'
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 const footerLinks = {
@@ -45,9 +46,13 @@ export function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-6">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
-                <Crown className="h-5 w-5 text-black" />
-              </div>
+              <Image
+                src="/logo.svg"
+                alt="Logo Hôtel Al Kabir"
+                width={44}
+                height={44}
+                className="rounded-full"
+              />
               <div>
                 <div className="font-serif text-xl font-bold text-white">Hôtel Al Kabir</div>
                 <div className="text-xs tracking-widest text-gold">★★★ Guéliz, Marrakech</div>

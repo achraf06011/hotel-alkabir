@@ -8,7 +8,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu, X, Phone, ChevronDown, User, LogOut, Settings,
-  Calendar, LayoutDashboard, Moon, Sun, Crown
+  Calendar, LayoutDashboard, Moon, Sun
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
@@ -92,18 +92,20 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className={cn(
-              'w-10 h-10 rounded-full flex items-center justify-center transition-all',
-              isTransparent ? 'bg-gold/90' : 'bg-gold'
-            )}>
-              <Crown className="h-5 w-5 text-black" />
-            </div>
+            <Image
+              src="/logo.svg"
+              alt="Logo Hôtel Al Kabir"
+              width={42}
+              height={42}
+              className="rounded-full drop-shadow-sm"
+              priority
+            />
             <div>
               <div className={cn('font-serif text-xl font-bold leading-none transition-colors', isTransparent ? 'text-white' : 'text-foreground')}>
-                Hotel Alkabir
+                Hôtel Al Kabir
               </div>
               <div className={cn('text-xs tracking-widest transition-colors', isTransparent ? 'text-gold/90' : 'text-gold')}>
-                ★★★
+                ★★★ Guéliz, Marrakech
               </div>
             </div>
           </Link>
