@@ -1,9 +1,12 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { getInitials } from '@/lib/utils'
 import { Users } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminGuestsPage() {
   const users = await prisma.user.findMany({
@@ -67,3 +70,4 @@ export default async function AdminGuestsPage() {
     </div>
   )
 }
+

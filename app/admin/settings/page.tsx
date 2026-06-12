@@ -1,9 +1,12 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Save } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 async function getSettingsMap() {
   const settings = await prisma.setting.findMany()
@@ -127,3 +130,4 @@ export default async function AdminSettingsPage() {
     </div>
   )
 }
+

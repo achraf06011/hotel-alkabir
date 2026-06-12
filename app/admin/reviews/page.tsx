@@ -1,10 +1,13 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Star, CheckCircle, Trash2 } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getInitials } from '@/lib/utils'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminReviewsPage() {
   const reviews = await prisma.review.findMany({
@@ -90,3 +93,4 @@ export default async function AdminReviewsPage() {
     </div>
   )
 }
+

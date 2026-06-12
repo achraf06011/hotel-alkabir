@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+﻿import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { HeroSection } from '@/components/home/HeroSection'
@@ -9,6 +9,9 @@ import { TestimonialsSection } from '@/components/home/TestimonialsSection'
 import { GalleryPreview } from '@/components/home/GalleryPreview'
 import { ContactSection } from '@/components/home/ContactSection'
 import { Skeleton } from '@/components/ui/skeleton'
+
+export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: 'Hôtel Al Kabir | Hôtel 3 Étoiles à Marrakech — Guéliz',
@@ -62,3 +65,4 @@ export default async function HomePage() {
     </div>
   )
 }
+

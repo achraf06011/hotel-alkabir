@@ -14,6 +14,8 @@ import {
 import { RoomBookingWidget } from '@/components/rooms/RoomBookingWidget'
 import { RoomGallery } from '@/components/rooms/RoomGallery'
 
+export const dynamic = 'force-dynamic'
+
 interface PageProps {
   params: Promise<{ id: string }>
 }

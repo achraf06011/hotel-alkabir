@@ -1,6 +1,9 @@
-import { Metadata } from 'next'
+﻿import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { RoomsClient } from '@/components/rooms/RoomsClient'
+
+export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: 'Chambres & Suites | Hotel Alkabir',
@@ -65,3 +68,4 @@ export default async function RoomsPage({
     </div>
   )
 }
+

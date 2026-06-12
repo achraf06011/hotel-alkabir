@@ -1,8 +1,11 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import { formatPrice, formatDate, getBookingStatusLabel } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Eye, CheckCircle, LogIn, LogOut, XCircle } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminBookingsPage() {
   const bookings = await prisma.booking.findMany({
@@ -119,3 +122,4 @@ export default async function AdminBookingsPage() {
     </div>
   )
 }
+

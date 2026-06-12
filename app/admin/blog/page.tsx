@@ -1,9 +1,12 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Plus, Edit, Trash2, Eye } from 'lucide-react'
 import Link from 'next/link'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminBlogPage() {
   const posts = await prisma.blogPost.findMany({
@@ -80,3 +83,4 @@ export default async function AdminBlogPage() {
     </div>
   )
 }
+

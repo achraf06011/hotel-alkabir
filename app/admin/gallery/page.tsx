@@ -1,8 +1,11 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Plus, Trash2, Star } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminGalleryPage() {
   const images = await prisma.galleryImage.findMany({
@@ -65,3 +68,4 @@ export default async function AdminGalleryPage() {
     </div>
   )
 }
+

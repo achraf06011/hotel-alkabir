@@ -1,10 +1,13 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import { formatPrice, getRoomTypeLabel } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Plus, Edit, Trash2, Eye, BedDouble } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminRoomsPage() {
   const rooms = await prisma.room.findMany({
@@ -97,3 +100,4 @@ export default async function AdminRoomsPage() {
     </div>
   )
 }
+

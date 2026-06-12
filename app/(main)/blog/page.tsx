@@ -1,10 +1,13 @@
-import { Metadata } from 'next'
+﻿import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Clock, ArrowRight } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: 'Blog | Hotel Alkabir',
@@ -111,3 +114,4 @@ export default async function BlogPage() {
     </div>
   )
 }
+

@@ -1,6 +1,9 @@
-import { Metadata } from 'next'
+﻿import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { BookingForm } from '@/components/booking/BookingForm'
+
+export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: 'Réservation | Hotel Alkabir',
@@ -45,3 +48,4 @@ export default async function BookingPage({
     </div>
   )
 }
+

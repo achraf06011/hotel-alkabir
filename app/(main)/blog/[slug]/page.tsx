@@ -7,6 +7,8 @@ import { formatDate } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Clock, ArrowLeft, CalendarDays, User } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 interface PageProps { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

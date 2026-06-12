@@ -1,8 +1,11 @@
-import { prisma } from '@/lib/prisma'
+﻿import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { MessageSquare, Mail, MailOpen, Archive } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export default async function AdminMessagesPage() {
   const contacts = await prisma.contact.findMany({
@@ -80,3 +83,4 @@ export default async function AdminMessagesPage() {
     </div>
   )
 }
+

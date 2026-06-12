@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+﻿import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
@@ -6,6 +6,9 @@ import { formatPrice, formatDate } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle2, Calendar, Users, BedDouble, Download, Home, Phone } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: 'Réservation confirmée | Hotel Alkabir',
@@ -150,3 +153,4 @@ export default async function ConfirmationPage({
     </div>
   )
 }
+
