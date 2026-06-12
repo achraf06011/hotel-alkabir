@@ -46,12 +46,12 @@ export default async function AdminReviewsPage() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3 flex-1 min-w-0">
                   <Avatar className="h-10 w-10 shrink-0">
-                    <AvatarImage src={review.user.image || ''} />
-                    <AvatarFallback className="text-xs">{getInitials(review.user.name || review.user.email)}</AvatarFallback>
+                    <AvatarImage src={review.user?.image || ''} />
+                    <AvatarFallback className="text-xs">{getInitials(review.user?.name || review.user?.email || 'A')}</AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className="font-semibold">{review.user.name || 'Anonyme'}</span>
+                      <span className="font-semibold">{review.user?.name || review.guestName || 'Anonyme'}</span>
                       <div className="flex">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
