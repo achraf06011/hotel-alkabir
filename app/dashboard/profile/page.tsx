@@ -12,11 +12,19 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { getInitials } from '@/lib/utils'
 
+type ProfileFormData = {
+  name: string
+  phone: string
+  city: string
+  country: string
+  address: string
+}
+
 export default function ProfilePage() {
   const { data: session, update } = useSession()
   const [isLoading, setIsLoading] = useState(false)
 
-  const form = useForm({
+  const form = useForm<ProfileFormData>({
     defaultValues: {
       name: session?.user.name || '',
       phone: '',
@@ -26,7 +34,7 @@ export default function ProfilePage() {
     },
   })
 
-  const handleSubmit = async (data: typeof form._defaultValues) => {
+  const handleSubmit = async (data: ProfileFormData) => {
     setIsLoading(true)
     try {
       const res = await fetch('/api/users/profile', {
