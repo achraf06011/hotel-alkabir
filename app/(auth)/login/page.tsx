@@ -1,18 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { Eye, EyeOff, Loader2, LogIn, MailCheck } from 'lucide-react'
+import { Eye, EyeOff, Loader2, LogIn } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [showPassword, setShowPassword] = useState(false)
@@ -21,20 +21,16 @@ export default function LoginPage() {
   const [googleAvailable, setGoogleAvailable] = useState(false)
 
   useEffect(() => {
-    // Show success message after email verification
     if (searchParams.get('verified') === '1') {
       toast.success('Email vérifié avec succès ! Vous pouvez maintenant vous connecter.')
     }
-    // Check if Google provider is available
     fetch('/api/auth/providers')
       .then((r) => r.json())
       .then((providers) => setGoogleAvailable(!!providers?.google))
       .catch(() => {})
   }, [searchParams])
 
-  const form = useForm({
-    defaultValues: { email: '', password: '' },
-  })
+  const form = useForm({ defaultValues: { email: '', password: '' } })
 
   const handleSubmit = async (data: { email: string; password: string }) => {
     setIsLoading(true)
@@ -75,10 +71,9 @@ export default function LoginPage() {
     <div>
       <div className="mb-8">
         <h1 className="font-serif text-3xl font-bold mb-2">Bon retour!</h1>
-        <p className="text-muted-foreground">Connectez-vous à votre espace client Hotel Alkabir</p>
+        <p className="text-muted-foreground">Connectez-vous à votre espace client Hôtel Al Kabir</p>
       </div>
 
-      {/* Google sign in — only shown if configured */}
       {googleAvailable && (
         <>
           <Button
@@ -161,13 +156,20 @@ export default function LoginPage() {
         </Button>
       </form>
 
-
-<p className="text-center text-sm text-muted-foreground mt-6">
+      <p className="text-center text-sm text-muted-foreground mt-6">
         Pas encore de compte?{' '}
         <Link href="/register" className="text-gold font-medium hover:underline">
           Créer un compte
         </Link>
       </p>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="animate-pulse h-96 bg-muted rounded-lg" />}>
+      <LoginContent />
+    </Suspense>
   )
 }
