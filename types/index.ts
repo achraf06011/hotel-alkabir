@@ -29,8 +29,8 @@ export type RoomWithDetails = Room & {
   images: RoomImage[]
   amenities: (RoomAmenity & { amenity: Amenity })[]
   _count?: {
-    bookings: number
-    reviews: number
+    bookings?: number
+    reviews?: number
   }
 }
 
