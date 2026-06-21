@@ -91,7 +91,7 @@ export default function ContactPage() {
             {/* Map */}
             <div className="rounded-xl overflow-hidden h-48 border border-border">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3397.3!2d-7.9938!3d31.6295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDM3JzQ2LjIiTiA3wrA1OSczNi42Ilc!5e0!3m2!1sfr!2sma!4v1000000000000"
+                src="https://maps.google.com/maps?q=31.6372231,-8.010916&z=17&output=embed&hl=fr"
                 width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
                 className="grayscale hover:grayscale-0 transition-all"
                 title="Hôtel Al Kabir - Marrakech"
