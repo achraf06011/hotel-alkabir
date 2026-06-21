@@ -7,29 +7,47 @@ import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 
 const categories = [
   { value: 'all', label: 'Tout' },
-  { value: 'hotel', label: 'L\'Hôtel' },
-  { value: 'rooms', label: 'Chambres' },
-  { value: 'pool', label: 'Piscine' },
-  { value: 'restaurant', label: 'Restaurant' },
-  { value: 'spa', label: 'Spa' },
+  { value: 'facade', label: 'L\'Hôtel' },
+  { value: 'chambres', label: 'Chambres' },
 ]
 
 const galleryImages = [
-  { id: '1', url: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80', alt: 'Façade', title: 'Notre façade majestueuse', category: 'hotel' },
-  { id: '2', url: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80', alt: 'Suite', title: 'Suite Présidentielle', category: 'rooms' },
-  { id: '3', url: 'https://images.unsplash.com/photo-1544124499-58912cbddaad?w=800&q=80', alt: 'Piscine', title: 'Piscine panoramique', category: 'pool' },
-  { id: '4', url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80', alt: 'Restaurant', title: 'Restaurant Al Nokhba', category: 'restaurant' },
-  { id: '5', url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80', alt: 'Spa', title: 'Spa Alkabir', category: 'spa' },
-  { id: '6', url: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=800&q=80', alt: 'Hall', title: 'Hall principal', category: 'hotel' },
-  { id: '7', url: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80', alt: 'Chambre', title: 'Chambre Deluxe', category: 'rooms' },
-  { id: '8', url: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80', alt: 'Vue', title: 'Vue panoramique', category: 'hotel' },
-  { id: '9', url: 'https://images.unsplash.com/photo-1568376794508-ae52c6ab3929?w=800&q=80', alt: 'Salle de bain', title: 'Salle de bain luxe', category: 'rooms' },
-  { id: '10', url: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80', alt: 'Bar', title: 'Bar Lounge', category: 'restaurant' },
-  { id: '11', url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80', alt: 'Piscine', title: 'Bord de piscine', category: 'pool' },
-  { id: '12', url: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80', alt: 'Petit-déjeuner', title: 'Petit-déjeuner marocain', category: 'restaurant' },
-  { id: '13', url: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800&q=80', alt: 'Suite Junior', title: 'Suite Junior', category: 'rooms' },
-  { id: '14', url: 'https://images.unsplash.com/photo-1623625434462-e5e42318ae49?w=800&q=80', alt: 'Suite Exec', title: 'Suite Exécutive', category: 'rooms' },
-  { id: '15', url: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80', alt: 'Gym', title: 'Fitness Center', category: 'spa' },
+  // ─── Façade ───────────────────────────────────────────────────────────────────
+  { id: '1',  url: '/images/facade/facade-1.jpg',                    alt: 'Façade Hôtel Al Kabir',      title: 'Façade de l\'hôtel',    category: 'facade'   },
+  { id: '2',  url: '/images/facade/facade-2.jpg',                    alt: 'Hôtel Al Kabir Marrakech',   title: 'Hôtel Al Kabir',        category: 'facade'   },
+
+  // ─── Chambre Double ───────────────────────────────────────────────────────────
+  { id: '3',  url: '/images/ChambreDouble/double-1.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '4',  url: '/images/ChambreDouble/double-2.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '5',  url: '/images/ChambreDouble/double-3.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '6',  url: '/images/ChambreDouble/double-4.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '7',  url: '/images/ChambreDouble/double-5.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '8',  url: '/images/ChambreDouble/double-6.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '9',  url: '/images/ChambreDouble/double-7.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+  { id: '10', url: '/images/ChambreDouble/double-8.webp',            alt: 'Chambre Double',             title: 'Chambre Double',        category: 'chambres' },
+
+  // ─── Chambre Queen-Size ───────────────────────────────────────────────────────
+  { id: '11', url: '/images/ChambreLitQueenSize/queen-1.webp',       alt: 'Chambre Lit Queen-Size',     title: 'Chambre Queen-Size',    category: 'chambres' },
+  { id: '12', url: '/images/ChambreLitQueenSize/queen-2.webp',       alt: 'Chambre Lit Queen-Size',     title: 'Chambre Queen-Size',    category: 'chambres' },
+  { id: '13', url: '/images/ChambreLitQueenSize/queen-3.webp',       alt: 'Chambre Lit Queen-Size',     title: 'Chambre Queen-Size',    category: 'chambres' },
+  { id: '14', url: '/images/ChambreLitQueenSize/queen-4.webp',       alt: 'Chambre Lit Queen-Size',     title: 'Chambre Queen-Size',    category: 'chambres' },
+  { id: '15', url: '/images/ChambreLitQueenSize/queen-5.webp',       alt: 'Chambre Lit Queen-Size',     title: 'Chambre Queen-Size',    category: 'chambres' },
+
+  // ─── Chambre King-Size ────────────────────────────────────────────────────────
+  { id: '16', url: '/images/ChambreLitKing-Size/king-1.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+  { id: '17', url: '/images/ChambreLitKing-Size/king-2.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+  { id: '18', url: '/images/ChambreLitKing-Size/king-3.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+  { id: '19', url: '/images/ChambreLitKing-Size/king-4.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+  { id: '20', url: '/images/ChambreLitKing-Size/king-5.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+  { id: '21', url: '/images/ChambreLitKing-Size/king-6.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+  { id: '22', url: '/images/ChambreLitKing-Size/king-7.jpg',         alt: 'Chambre Lit King-Size',      title: 'Chambre King-Size',     category: 'chambres' },
+
+  // ─── Chambre Triple ───────────────────────────────────────────────────────────
+  { id: '23', url: '/images/ChambreTripleDeBase/triple-1.webp',      alt: 'Chambre Triple de Base',     title: 'Chambre Triple',        category: 'chambres' },
+  { id: '24', url: '/images/ChambreTripleDeBase/triple-2.webp',      alt: 'Chambre Triple de Base',     title: 'Chambre Triple',        category: 'chambres' },
+  { id: '25', url: '/images/ChambreTripleDeBase/triple-3.webp',      alt: 'Chambre Triple de Base',     title: 'Chambre Triple',        category: 'chambres' },
+  { id: '26', url: '/images/ChambreTripleDeBase/triple-4.webp',      alt: 'Chambre Triple de Base',     title: 'Chambre Triple',        category: 'chambres' },
+  { id: '27', url: '/images/ChambreTripleDeBase/triple-5.webp',      alt: 'Chambre Triple de Base',     title: 'Chambre Triple',        category: 'chambres' },
 ]
 
 export default function GalleryPage() {
@@ -59,7 +77,7 @@ export default function GalleryPage() {
           <p className="text-gold text-sm font-medium tracking-widest uppercase mb-3">Galerie</p>
           <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4">L&apos;Hôtel en Images</h1>
           <p className="text-white/70 max-w-xl mx-auto">
-            Découvrez la beauté de l&apos;Hotel Alkabir à travers notre galerie photographique
+            Découvrez l&apos;Hôtel Al Kabir à travers notre galerie photographique
           </p>
         </div>
       </div>
