@@ -39,16 +39,16 @@ export function AboutSection() {
           >
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80"
-                alt="Hotel Alkabir interior"
+                src="/images/facade/facade-1.jpg"
+                alt="Façade Hôtel Al Kabir"
                 fill
                 className="object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-48 h-48 rounded-xl overflow-hidden border-4 border-background shadow-xl hidden md:block">
               <Image
-                src="https://images.unsplash.com/photo-1544124499-58912cbddaad?w=300&q=80"
-                alt="Piscine Hotel Alkabir"
+                src="/images/facade/facade-2.jpg"
+                alt="Hôtel Al Kabir Marrakech"
                 fill
                 className="object-cover"
               />
