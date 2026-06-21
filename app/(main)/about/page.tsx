@@ -59,8 +59,8 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="relative h-80 md:h-[500px] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920&q=80"
-          alt="Hotel Al Kabir Marrakech"
+          src="/images/facade/facade-1.jpg"
+          alt="Façade Hôtel Al Kabir Marrakech"
           fill
           className="object-cover"
         />
@@ -109,8 +109,8 @@ export default function AboutPage() {
             <div className="relative h-[500px]">
               <div className="absolute inset-0 rounded-2xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1596436889106-be35e843f974?w=800&q=80"
-                  alt="Hotel Al Kabir Marrakech"
+                  src="/images/facade/facade-2.jpg"
+                  alt="Hôtel Al Kabir Marrakech"
                   fill
                   className="object-cover"
                 />

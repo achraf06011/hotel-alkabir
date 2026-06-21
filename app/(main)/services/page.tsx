@@ -32,7 +32,7 @@ const services = [
     description:
       'Notre piscine extérieure est perchée au dernier étage de l\'hôtel, offrant une vue panoramique sur les toits de Marrakech et, par temps clair, les sommets enneigés de l\'Atlas. Entourée de transats et de parasols, elle est l\'espace idéal pour se détendre sous le soleil marocain.',
     features: ['Ouverte de 7h00 à 22h00', 'Service barman au bord de la piscine', 'Espace jacuzzi séparé', 'Piscine enfants (juillet-août)', 'Cours d\'aquagym', 'Serviettes fournies'],
-    image: 'https://images.unsplash.com/photo-1544124499-58912cbddaad?w=800&q=80',
+    image: '/images/facade/facade-2.jpg',
   },
   {
     id: 'spa',

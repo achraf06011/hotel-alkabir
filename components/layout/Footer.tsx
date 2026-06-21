@@ -9,8 +9,7 @@ const footerLinks = {
     { label: 'À propos', href: '/about' },
     { label: 'Galerie', href: '/gallery' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Carrières', href: '/careers' },
-    { label: 'Presse', href: '/press' },
+    { label: 'Contact', href: '/contact' },
   ],
   services: [
     { label: 'Chambres & Suites', href: '/rooms' },
